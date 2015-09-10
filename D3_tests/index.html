@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 coloured bar graph</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+        <style type="text/css">
+        
+            div.bar {
+                display: inline-block;
+                width: 20px;
+                height: 75px;   
+                margin-right: 2px;
+                background-color: teal;
+            }
+
+            .xlabel{
+                display: inline-block;
+                font-size : 20px
+                
+            }
+        
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var dataset = [ 5, 10, 15, 20, 25 ];
+            
+            
+            d3.select("body").selectAll("div")
+                .data(dataset)
+                .enter()
+                .append("div")
+                .attr("class", "bar")
+                .call(newStyle)
+
+
+            var svg = d3.select("body").selectAll("svg")
+            var textLabel = " Shweta Raje";
+            svg.append("text")
+                .data(textLabel)
+                .enter() 
+                .append("text")
+
+                .style("font-size", "20px")
+                .attr("class", "xlabel")
+                
+                .text(function(d) {return d})
+                
+                
+                
+
+                
+            // var svg = d3.select("body").append("svg")
+            // .attr("width", 200)
+            // .attr("height", 200);
+
+            // var textLabel = "Shweta";
+            // texts = svg.append("g")
+            //     .data(textLabel)
+            //     .enter()
+            //     .append("text")
+                
+            //     texts.attr("class", "xlabel")
+            //         .attr("text-anchor", "end")
+            //         .attr("fill","red")
+            //     // .text("Shweta");
+                
+    //         svg.append("g")
+    //   .attr("class", "xlabel")
+    // .append("text")
+    //   // .attr("transform", "rotate(-90)")
+    //   .attr("y", 6)
+    //   .attr("dy", ".71em")
+    //   .style("text-anchor", "end")
+    //   .text("Frequency");
+
+            function newStyle(){
+
+                d3.select("body").selectAll("div").style("height", function(d) {
+                    var barHeight = d * 5;
+                    return barHeight + "px";
+                });
+                
+                var sel_col = ["pink", "teal", "lightcoral", "palegreen", "LightSkyBlue"];
+                d3.select("body").selectAll("div")
+                    .data(sel_col)
+                    .enter()
+                    .call(selectcolor)
+
+                }
+
+            function selectcolor(){
+                    d3.select("body").selectAll("div").style("background-color", function(d) {
+                    var newcolor = d;
+                    return newcolor;
+                
+                });
+                }
+
+            // function addText(){
+                
+            //      d3.select("body").selectAll("div")
+            //     // .data("Shweta")
+            //     // .enter()
+            //     // .append("div")
+            //     // .attr("class","text")
+            //     .append("text")  
+            //     .text("Shweta")  
+                
+                
+            // }    
+            
+        </script>
+    </body>
+</html>
+
+
